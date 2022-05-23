@@ -1,5 +1,7 @@
 package Asteroids;
 
+import java.awt.*;
+
 public class Main {
 
     /*
@@ -54,7 +56,7 @@ public class Main {
                     for (Asteroid asteroid : asteroids) {
                         if (asteroid != null) {
                             if (didCircleCircleCollide(bullet.getxPos(), bullet.getyPos(), bullet.getRadius(), asteroid.getxPos(), asteroid.getyPos(), asteroid.getRadius())) {
-                                System.out.println("hit");
+                                asteroid.die();
                             }
                         }
                     }
@@ -70,7 +72,7 @@ public class Main {
                 if (asteroid != null) {
                     asteroid.calculate(timeElapsed);
                     if (didCircleCircleCollide(spaceship.getxPos(), spaceship.getyPos(), spaceship.getScaledWidth(), asteroid.getxPos(), asteroid.getyPos(), asteroid.getRadius())) {
-
+                        spaceship.die(spaceship);
                     }
 
 
