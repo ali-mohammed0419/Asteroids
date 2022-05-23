@@ -1,5 +1,6 @@
 package Asteroids;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Spaceship {
@@ -19,6 +20,7 @@ public class Spaceship {
     private double scaledWidth;
     private Bullet[] bullets = new Bullet[100];
     private int counter;
+    private boolean isDead;
 
     private String image = "Checkers/Demo.png";
 
@@ -34,6 +36,7 @@ public class Spaceship {
         scaledHeight = 10;
         scaledWidth = 10;
         counter = 0;
+        isDead = false;
     }
 
     public void calculate(double timeElapsed) {
@@ -111,7 +114,12 @@ public class Spaceship {
         } else if (xPos - scaledWidth * .5 > 100) {
             xPos = 1;
         }
-
+        if(isDead){
+            StdDraw.setPenColor(Color.white);
+            StdDraw.filledRectangle(0,0,250,250);
+            StdDraw.setPenColor(Color.black);
+            StdDraw.text(50,50, "game over");
+        }
 
     }
 
@@ -131,10 +139,13 @@ public class Spaceship {
         degrees = 270;
     }
 
-    public void setStateDestroyed(Spaceship spaceship) {
-        StdDraw.text(50, 50, "Game Over");
-        xPos = 50;
-        yPos = 50;
+    public void die(Spaceship spaceship) {
+        isDead = true;
+        if(isDead){
+            StdDraw.setPenColor(Color.WHITE);
+            StdDraw.rectangle(0,0,250,250);
+            StdDraw.text(50,50, "game over");
+        }
     }
 
     public double getxRatio() {
